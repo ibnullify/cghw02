@@ -24,28 +24,33 @@ def draw_line( x0, y0, x1, y1, screen, color ):
 
     if (dy > 0):
         if (dx > dy):
-            quadrant = 1
+            octant = 1
         else:
-            quadrant = 2
+            octant = 2
     else:
         if (dy*-1 < dx):
-            quadrant = 8
+            octant = 8
         else:
-            quadrant = 7
+            octant = 7
 
-    draw(x1, y1, x0, y0, screen, color, quadrant)
+    draw(x0, y0, x1, y1, octant, screen, color)
 
 
 def draw ( x0, y0, x1, y1, octant, screen, color):
+    x = x0
+    y = y0
     A = y1 - y0
     B = -1*(x1 - x0)
+
     #Octant 1 and 5, slope is less than 1 but greater than 0
     if (octant == 1):
-        x = x0
-        y = y0
+        #print "octant 1"
         d = 2*A + B
+        #print "outside while"
         while (x <= x1):
-            plot(x,y)
+            #print "inside while"
+            plot(screen, color, x, y)
+            #print "plotted"
             if (d > 0):
                 y += 1
                 d += 2*B
@@ -55,13 +60,37 @@ def draw ( x0, y0, x1, y1, octant, screen, color):
     
     #Octant 2 and 6, slope is greater than 1
     if (octant == 2):
-        pass
+        #print "octant 2"
+        d = A+2*B
+	while (y <= y1):
+	    plot(screen, color, x, y)
+	    if (d<0):
+		x += 1	
+		d += 2*A
+	    y += 1
+	    d += 2*B
     #Octant 3 and 7, slope is less than -1
     if (octant == 7):
-        pass
+        #print "octant 7"
+        d = A - 2*B
+	while (y >= y1):
+	    plot(screen, color, x, y)
+	    if (d > 0):
+		x += 1
+		d += 2*A
+	    y -= 1
+	    d -= 2*B
     #Octant 4 and 8, slope is less than 0 but greater than -1
     if (octant == 8):
-        pass
+        #print "octant 8"
+        d = 2*A - B
+	while (x <= x1):
+	    plot(screen, color, x, y)
+	    if (d < 0):
+		y -= 1
+		d -= 2*B
+	    x += 1
+	    d += 2*A
 
 def draw_vertical( x, y0, y1, screen, color):
     for i in range( y1 - y0 ):
