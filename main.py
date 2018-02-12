@@ -1,6 +1,7 @@
 from display import *
 from draw import *
 import random
+
 screen = new_screen()
 #color = [ 0, 255, 0 ]
 
@@ -11,12 +12,6 @@ draw_line(250, 0, 250, 500, screen, color)
 
 # horizontal line
 draw_line(0, 250, 500, 250, screen, color)
-
-# y = x
-draw_line(0, 0, 500, 500, screen, color)
-
-# y = -x
-draw_line(0, 500, 500, 0, screen, color)
 
 
 
@@ -70,15 +65,17 @@ draw_from(0,0,50);
 draw_from(0,500,50);
 draw_from(500,0,50);
 draw_from(500,500,50);
-    
 
-'''
-for x in range(1,501):
-    for y in range(1,501):
-        print x,y
-        color = [ random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)]
-        draw_line(250, 250, x, y, screen, color)
-'''
+
+color = [ 255, 255, 255 ] #white
+
+# y = x
+draw_line(0, 0, 500, 500, screen, color)
+
+# y = -x
+draw_line(0, 500, 500, 0, screen, color)
+
+
 
 display(screen)
 save_extension(screen, 'img.png')
