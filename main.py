@@ -75,7 +75,7 @@ draw_line(0, 0, 500, 500, screen, color)
 # y = -x
 draw_line(0, 500, 500, 0, screen, color)
 
-
+print "File Name: img.png"
 
 display(screen)
 save_extension(screen, 'img.png')
